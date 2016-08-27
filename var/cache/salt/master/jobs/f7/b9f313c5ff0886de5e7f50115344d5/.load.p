@@ -1,0 +1,1 @@
+†¨tgt_type¤glob£jid´20160827191907048216£tgt¥local¤user¤root£arg‘§rsyslog£fun«state.apply

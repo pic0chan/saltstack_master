@@ -1,0 +1,1 @@
+Ü®tgt_type§glob£jid¥20160827173242431428£tgt•local§user§root£argê£fun©test.ping

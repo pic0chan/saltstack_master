@@ -1,0 +1,5 @@
+salt-ssh:
+  roster_file: ./roster
+  config_dir: .
+  log_file: ./log.txt
+

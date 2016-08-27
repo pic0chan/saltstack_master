@@ -1,1 +1,0 @@
-„¥files–«rsyslog.sls¯setup-shell.sls§top.sls±files/etc/profile¶files/etc/rsyslog.conf±files/home/bashrc¤dirs”¡.¥files©files/etcªfiles/home¥linksªempty_dirs

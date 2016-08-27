@@ -1,6 +1,0 @@
-./states/setup-shell.sls:1472278970.87
-./states/top.sls:1472293127.81
-./states/files/etc/rsyslog.conf:1472278794.62
-./states/rsyslog.sls:1472293258.18
-./states/files/etc/profile:1472278894.52
-./states/files/home/bashrc:1472278917.51

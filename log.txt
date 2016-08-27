@@ -1,2 +1,8 @@
 2016-08-27 19:19:08,497 [salt.pillar      ][CRITICAL][4044] Pillar render error: Error encountered while render pillar top file.
 2016-08-27 19:19:08,524 [salt.pillar      ][CRITICAL][4044] Pillar render error: Error encountered while render pillar top file.
+2016-08-27 20:02:45,436 [salt.utils.templates][ERROR   ][5649] Rendering exception occurred: Jinja variable 'network' is undefined
+2016-08-27 20:02:45,436 [salt.state       ][CRITICAL][5649] Rendering SLS 'base:rsyslog' failed: Jinja variable 'network' is undefined
+2016-08-27 20:05:17,200 [salt.utils.templates][ERROR   ][5719] Rendering exception occurred: Jinja variable 'network' is undefined
+2016-08-27 20:05:17,201 [salt.state       ][CRITICAL][5719] Rendering SLS 'base:rsyslog' failed: Jinja variable 'network' is undefined
+2016-08-27 20:05:59,785 [salt.utils.templates][ERROR   ][5755] Rendering exception occurred: Jinja variable 'dict object' has no attribute 'eth0'
+2016-08-27 20:05:59,786 [salt.state       ][CRITICAL][5755] Rendering SLS 'base:rsyslog' failed: Jinja variable 'dict object' has no attribute 'eth0'

@@ -5,7 +5,11 @@ install_packages:
 
 /etc/rsyslog.conf:
   file.managed:
-    - source: salt://files/etc/rsyslog.conf
+{% if salt['network.interface_ip']('eth0') == '192.168.1.12' %}
+    - source: salt://files/etc/server_rsyslog.conf
+{% else %}
+    - source: salt://files/etc/client_rsyslog.conf
+{% endif %}
     - template: jinja
     - mode: 0644
     - user: root

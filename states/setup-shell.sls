@@ -1,6 +1,6 @@
 /root/.bashrc:
   file.managed:
-    - source: salt://files/home/bashrc
+    - source: salt://files/shared/home/bashrc
     - template: jinja
     - mode: 0644
     - user: root
@@ -8,7 +8,7 @@
 
 /etc/profile:
   file.managed:
-    - source: salt://files/etc/profile
+    - source: salt://files/shared/etc/profile
     - template: jinja
     - mode: 0644
     - user: root

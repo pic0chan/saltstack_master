@@ -1,3 +1,7 @@
 base:
-  *:
-  - rsyslog
+  '*':
+    - setup-shell
+    - rsyslog
+  munin:
+    - munin
+

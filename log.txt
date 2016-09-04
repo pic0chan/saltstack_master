@@ -4888,3 +4888,18 @@ _edbc7885e4f9aac9b83b35999b68d015148caf467b78fa39c05f669c0ff89878
 2016-08-27 20:52:00,974 [salt.utils.lazy  ][DEBUG   ][7053] LazyLoaded nested.output
 2016-08-27 20:52:00,977 [salt.utils.lazy  ][DEBUG   ][7053] LazyLoaded nested.output
 2016-08-27 20:52:00,978 [salt.output      ][TRACE   ][7053] data = {'local': {'file_|-/etc/rsyslog.conf_|-/etc/rsyslog.conf_|-managed': {'comment': u'File /etc/rsyslog.conf updated', 'pchanges': {'diff': '---  \n+++  \n@@ -78,4 +78,4 @@\n # remote host is: name/ip:port, e.g. 192.168.0.1:514, port optional\n #*.* @@remote-host:514\n # ### end of the forwarding rule ###\n-*.* @192.168.1.12 514\n+*.* @192.168.1.12:514\n'}, 'name': '/etc/rsyslog.conf', 'start_time': '20:52:00.158253', 'result': True, 'duration': u'149.043 ms', '__run_num__': 1, 'changes': {'diff': '---  \n+++  \n@@ -78,4 +78,4 @@\n # remote host is: name/ip:port, e.g. 192.168.0.1:514, port optional\n #*.* @@remote-host:514\n # ### end of the forwarding rule ###\n-*.* @192.168.1.12 514\n+*.* @192.168.1.12:514\n'}, '__id__': '/etc/rsyslog.conf'}, 'pkg_|-install_packages_|-install_packages_|-installed': {'comment': u'All specified packages are already installed', 'name': 'rsyslog', 'start_time': '20:51:59.748297', 'result': True, 'duration': u'389.84 ms', '__run_num__': 0, 'changes': {}, '__id__': 'install_packages'}, 'service_|-rsyslog_|-rsyslog_|-running': {'comment': u'Service restarted', 'name': 'rsyslog', 'start_time': '20:52:00.367191', 'result': True, 'duration': u'193.415 ms', '__run_num__': 3, 'changes': {'rsyslog': True}, '__id__': 'rsyslog'}}}
+2016-09-04 13:23:25,968 [salt.state       ][ERROR   ][2506] Unable to render top file: expected alphabetic or numeric character, but found ':'
+2016-09-04 13:24:33,813 [salt.client.ssh  ][ERROR   ][2548] TypeError encountered executing state.apply: apply_() takes at most 1 argument (10 given)
+2016-09-04 13:24:59,558 [salt.state       ][ERROR   ][2581] Unable to render top file: expected alphabetic or numeric character, but found ':'
+2016-09-04 13:25:12,038 [salt.client.ssh  ][ERROR   ][2632] TypeError encountered executing state.apply: apply_() takes at most 1 argument (10 given)
+2016-09-04 13:26:44,391 [salt.state       ][CRITICAL][2726] Rendering SLS 'base:top' failed: expected alphabetic or numeric character, but found ':'; line 2
+
+---
+base:
+  *:    <======================
+    - setup-shell
+    - rsyslog
+    - munin
+
+ 
+---

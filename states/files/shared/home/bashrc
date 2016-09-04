@@ -10,6 +10,6 @@ alias mv='mv -i'
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
-export PYENV_ROOT=/root/pyenv
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+#export PYENV_ROOT=/root/pyenv
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"

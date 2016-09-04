@@ -8,4 +8,9 @@ syslog:
   user: salt-ope
   passwd: salt-ope
   sudo: True
+munin:
+  host: 192.168.1.15
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
 

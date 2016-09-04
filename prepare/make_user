@@ -1,0 +1,21 @@
+/usr/sbin/groupadd -g 4000 salt-ope
+/usr/sbin/useradd  -u 4000 -g salt-ope -m -s /bin/bash salt-ope
+passwd -d salt-ope
+mkdir ~salt-ope/.ssh/
+ssh-keygen -t rsa -b 2048 -f ~salt-ope/.ssh/saltkey -N ''
+cat ~salt-ope/.ssh/saltkey.pub >> ~salt-ope/.ssh/authorized_keys
+chmod 700 ~salt-ope/.ssh
+chmod 600 ~salt-ope/.ssh/authorized_keys
+chown -R salt-ope:salt-ope ~salt-ope
+
+cat > /etc/sudoers.d/salt-ope <<-EOF
+Defaults    !requiretty
+Defaults    timestamp_timeout = 0
+Defaults    env_keep += "HOME"
+Defaults    env_keep += "PATH"
+salt-ope  ALL=(ALL) NOPASSWD:ALL
+EOF
+
+chmod 0440 /etc/sudoers.d/salt-ope
+
+sed -i.org 's%^salt-ope:.*%salt-ope:$6$zN7qwYXu$HSp4DPP1qC4KrquHiH28B8ecXfbmRvGk0Gzp7oTHFW5qYKMj8CwCvYJzmAXv6n3QHOVGh383iiL4cmA5gTK9M1:17042:0:99999:7:::%' /etc/shadow

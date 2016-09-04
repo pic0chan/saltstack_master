@@ -1,18 +1,32 @@
 {% set host_addr = salt['network.interface_ip']('eth0') %}
+{% set os_ver = salt['grains.get']('osfinger') %}
 
 /etc/yum.repos.d/epel.repo:
   file.managed:
+{% if os_ver == 'CentOS Linux-7' %}
   - source: salt://files/shared/etc/yum.repos.d/epel.repo_v7
+{% elif os_ver == 'CentOS-6' %}
+  - source: salt://files/shared/etc/yum.repos.d/epel.repo_v6
+{% endif %}
   - mode: 0644
   - user: root
   - group: root
 
+{% if os_ver == 'CentOS Linux-7' %}
 /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7:
   file.managed:
   - source: salt://files/shared/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
   - mode: 0644
   - user: root
   - group: root
+{% elif os_ver == 'CentOS-6' %}
+/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6:
+  file.managed:
+  - source: salt://files/shared/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+  - mode: 0644
+  - user: root
+  - group: root
+{% endif %}
 
 munin-pkgs:
   pkg.installed:

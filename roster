@@ -3,7 +3,7 @@ local:
   user: salt-ope
   passwd: salt-ope
   sudo: True
-syslog:
+nagioslog:
   host: 192.168.1.12
   user: salt-ope
   passwd: salt-ope

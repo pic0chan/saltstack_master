@@ -1,0 +1,171 @@
+###
+## td-agent.conf
+#
+
+<source>
+  type forward
+#  type tail
+  port 24224
+  bind 0.0.0.0
+</source>
+
+#<match apache.access>
+#  type file
+#  path /var/log/td-agent/tmp/receive.log
+#</match>
+#<match horizon.access>
+#  type file
+#  path /var/log/td-agent/tmp/horizon_access.log
+#</match>
+
+<match horizon.access>
+  type elasticsearch
+  host localhost
+  port 9200
+  logstash_format true
+  type_name application-log
+  buffer_type memory
+  retry_limit 17
+  retry_wait 1.0
+  num_threads 1
+  flush_interval 10
+</match>
+
+<match horizon.access.other>
+  type elasticsearch
+  host localhost
+  port 9200
+  logstash_format true
+  type_name application-log
+  buffer_type memory
+  retry_limit 17
+  retry_wait 1.0
+  num_threads 1
+  flush_interval 10
+</match>
+
+<match nova.compute>
+  type elasticsearch
+  host localhost
+  port 9200
+  logstash_format true
+  logstash_prefix nova-compute
+  type_name nova-log
+  buffer_type memory
+  retry_limit 17
+  retry_wait 1.0
+  num_threads 1
+  flush_interval 10
+</match>
+
+<match nova.api>
+  type elasticsearch
+  host localhost
+  port 9200
+  logstash_format true
+  logstash_prefix nova-api
+  type_name nova-log
+  buffer_type memory
+  retry_limit 17
+  retry_wait 1.0
+  num_threads 1
+  flush_interval 10
+</match>
+
+<match nova.manage>
+  type elasticsearch
+  host localhost
+  port 9200
+  logstash_format true
+  logstash_prefix nova-manage
+  type_name nova-log
+  buffer_type memory
+  retry_limit 17
+  retry_wait 1.0
+  num_threads 1
+  flush_interval 10
+</match>
+
+<match nova.novncproxy>
+  type elasticsearch
+  host localhost
+  port 9200
+  logstash_format true
+  logstash_prefix nova-novncproxy
+  type_name nova-log
+  buffer_type memory
+  retry_limit 17
+  retry_wait 1.0
+  num_threads 1
+  flush_interval 10
+</match>
+
+<match nova.cert>
+  type elasticsearch
+  host localhost
+  port 9200
+  logstash_format true
+  logstash_prefix nova-cert
+  type_name nova-log
+  buffer_type memory
+  retry_limit 17
+  retry_wait 1.0
+  num_threads 1
+  flush_interval 10
+</match>
+
+<match nova.consoleauth>
+  type elasticsearch
+  host localhost
+  port 9200
+  logstash_format true
+  logstash_prefix nova-consoleauth
+  type_name nova-log
+  buffer_type memory
+  retry_limit 17
+  retry_wait 1.0
+  num_threads 1
+  flush_interval 10
+</match>
+
+<match nova.scheduler>
+  type elasticsearch
+  host localhost
+  port 9200
+  logstash_format true
+  logstash_prefix nova-scheduler
+  type_name nova-log
+  buffer_type memory
+  retry_limit 17
+  retry_wait 1.0
+  num_threads 1
+  flush_interval 10
+</match>
+
+<match nova.conductor>
+  type elasticsearch
+  host localhost
+  port 9200
+  logstash_format true
+  logstash_prefix nova-conductor
+  type_name nova-log
+  buffer_type memory
+  retry_limit 17
+  retry_wait 1.0
+  num_threads 1
+  flush_interval 10
+</match>
+
+<match swift.log>
+  type elasticsearch
+  host localhost
+  port 9200
+  logstash_format true
+  logstash_prefix swift
+  type_name swift-log
+  buffer_type memory
+  retry_limit 17
+  retry_wait 1.0
+  num_threads 1
+  flush_interval 10
+</match>

@@ -1,3 +1,9 @@
+shell_packages:
+  pkg.installed:
+    - pkgs:
+      - git
+      - vim-enhanced
+
 /root/.bashrc:
   file.managed:
     - source: salt://files/shared/home/bashrc

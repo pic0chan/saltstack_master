@@ -6,19 +6,10 @@ cgitmpdir /var/cache/munin/www
 cgiurl_graph /munin-cgi/munin-cgi-graph
 
 [localhost]
-  address {{ salt['network.interface_ip']('eth0') }}
+  address 192.168.33.101
   use_node_name yes
-[Dev;nagioslog]
-  address 192.168.1.12
-  use_node_name yes
-  df._dev_vda1.warning 75
-  df._dev_vda1.critical 80
-  df_inode._dev_vda1.warning 75
-  df_inode._dev_vda1.critical 80
-  load.load.warning 8
-  load.load.critical 15
-[Dev;kibana4]
-  address 192.168.1.37
+[Dev;tmp-muninnode]
+  address 192.168.33.11
   use_node_name yes
   df._dev_vda1.warning 75
   df._dev_vda1.critical 80

@@ -13,4 +13,13 @@ munin:
   user: salt-ope
   passwd: salt-ope
   sudo: True
-
+kibana4:
+  host: 192.168.1.37
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
+munin_cent71:
+  host: 192.168.1.19
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True

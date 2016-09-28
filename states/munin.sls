@@ -65,7 +65,8 @@ munin-pkgs:
   - source: salt://files/munin/etc/munin/munin.conf
   - template: jinja
   - context:
-    munin_async: {{ pillar.munin_async_server }} 
+    munin_master: {{ pillar.munin_master }}
+    munin_async_server: {{ pillar.munin_async_server }} 
   - mode: 0644
   - user: root
   - group: root

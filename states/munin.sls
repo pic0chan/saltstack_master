@@ -1,5 +1,6 @@
 {% set host_addr = salt['network.interface_ip']('eth0') %}
 {% set os_ver = salt['grains.get']('osfinger') %}
+{% set munin_list = pillar.munin_list %}
 
 {% if os_ver == 'CentOS Linux-7' %}
 /etc/yum.repos.d/epel.repo:
@@ -37,12 +38,13 @@ munin-pkgs:
   pkg.installed:
   - pkgs:
     - munin
-{% if host_addr in ['192.168.1.15', '192.168.1.19'] %}
+    - munin-async
+{% if host_addr in munin_list %}
     - httpd
     - mod_fcgid
 {% endif %}
 
-{% if host_addr in ['192.168.1.15', '192.168.1.19'] %}
+{% if host_addr in munin_list %}
 /etc/munin/munin-node.conf:
   file.managed:
   - source: salt://files/munin/etc/munin/munin-node.conf
@@ -62,6 +64,8 @@ munin-pkgs:
   file.managed:
   - source: salt://files/munin/etc/munin/munin.conf
   - template: jinja
+  - context:
+    munin_async: {{ pillar.munin_async_server }} 
   - mode: 0644
   - user: root
   - group: root
@@ -136,7 +140,7 @@ munin-pkgs:
   - group: root
 {% endif %}
 
-{% if host_addr in ['192.168.1.15', '192.168.1.19'] %}
+{% if host_addr in munin_list %}
 httpd:
   service.running:
   - enable: True
@@ -152,7 +156,7 @@ munin-node:
   - watch:
     - file: /etc/munin/munin-node.conf
     - file: /etc/munin/munin.conf
-{% if host_addr in ['192.168.1.15', '192.168.1.19'] %}
+{% if host_addr in munin_list %}
     - file: /etc/munin/munin-htpasswd
 {% endif %}
 

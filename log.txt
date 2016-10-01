@@ -4903,3 +4903,61 @@ base:
 
  
 ---
+2016-09-29 00:00:05,147 [salt.utils.templates][ERROR   ][15662] Rendering exception occurred: Jinja variable 'munin_async' is undefined
+2016-09-29 00:00:05,148 [salt.state       ][CRITICAL][15662] Rendering SLS 'base:munin' failed: Jinja variable 'munin_async' is undefined
+2016-10-01 00:36:12,719 [salt.utils.templates][ERROR   ][17496] Rendering exception occurred: Jinja error: argument of type 'StrictUndefined' is not iterable
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/site-packages/salt/utils/templates.py", line 366, in render_jinja_tmpl
+    output = template.render(**decoded_context)
+  File "/usr/lib/python2.6/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/usr/lib/python2.6/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "<template>", line 169, in top-level template code
+TypeError: argument of type 'StrictUndefined' is not iterable
+
+; line 169
+
+---
+[...]
+    - file: /etc/munin/munin.conf
+{% if host_addr in munin_server_list %}
+    - file: /etc/munin/munin-htpasswd
+{% endif %}
+
+{% if host_addr in munin_async_list %}    <======================
+munin-asyncd:
+  service.running:
+  - enable: True
+{% endif %}
+
+[...]
+---
+2016-10-01 00:36:12,722 [salt.state       ][CRITICAL][17496] Rendering SLS 'base:munin' failed: Jinja error: argument of type 'StrictUndefined' is not iterable
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/site-packages/salt/utils/templates.py", line 366, in render_jinja_tmpl
+    output = template.render(**decoded_context)
+  File "/usr/lib/python2.6/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/usr/lib/python2.6/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "<template>", line 169, in top-level template code
+TypeError: argument of type 'StrictUndefined' is not iterable
+
+; line 169
+
+---
+[...]
+    - file: /etc/munin/munin.conf
+{% if host_addr in munin_server_list %}
+    - file: /etc/munin/munin-htpasswd
+{% endif %}
+
+{% if host_addr in munin_async_list %}    <======================
+munin-asyncd:
+  service.running:
+  - enable: True
+{% endif %}
+
+[...]
+---

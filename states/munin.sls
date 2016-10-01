@@ -1,6 +1,7 @@
 {% set host_addr = salt['network.interface_ip']('eth0') %}
 {% set os_ver = salt['grains.get']('osfinger') %}
-{% set munin_list = pillar.munin_list %}
+{% set munin_server_list = pillar.munin_server_list %}
+{% set munin_async_client = pillar.munin_async_client %}
 
 {% if os_ver == 'CentOS Linux-7' %}
 /etc/yum.repos.d/epel.repo:
@@ -39,16 +40,18 @@ munin-pkgs:
   - pkgs:
     - munin
     - munin-async
-{% if host_addr in munin_list %}
+{% if host_addr in munin_server_list %}
     - httpd
     - mod_fcgid
 {% endif %}
 
-{% if host_addr in munin_list %}
+{% if host_addr in munin_server_list %}
 /etc/munin/munin-node.conf:
   file.managed:
   - source: salt://files/munin/etc/munin/munin-node.conf
   - template: jinja
+  - context:
+    munin_server_list: {{ pillar.munin_server_list }}
   - mode: 0644
   - user: root
   - group: root
@@ -66,7 +69,7 @@ munin-pkgs:
   - template: jinja
   - context:
     munin_master: {{ pillar.munin_master }}
-    munin_async_server: {{ pillar.munin_async_server }} 
+    munin_async_client: {{ pillar.munin_async_client }} 
   - mode: 0644
   - user: root
   - group: root
@@ -121,6 +124,8 @@ munin-pkgs:
   file.managed:
   - source: salt://files/shared/etc/munin/munin-node.conf
   - template: jinja
+  - context: 
+    munin_server_list: {{ pillar.munin_server_list }}
   - mode: 0644
   - user: root
   - group: root
@@ -141,7 +146,7 @@ munin-pkgs:
   - group: root
 {% endif %}
 
-{% if host_addr in munin_list %}
+{% if host_addr in munin_server_list %}
 httpd:
   service.running:
   - enable: True
@@ -157,7 +162,14 @@ munin-node:
   - watch:
     - file: /etc/munin/munin-node.conf
     - file: /etc/munin/munin.conf
-{% if host_addr in munin_list %}
+{% if host_addr in munin_server_list %}
     - file: /etc/munin/munin-htpasswd
 {% endif %}
+
+{% if host_addr in munin_async_client %}
+munin-asyncd:
+  service.running:
+  - enable: True
+{% endif %}
+
 

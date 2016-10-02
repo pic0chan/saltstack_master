@@ -8,7 +8,7 @@ nagioslog:
   user: salt-ope
   passwd: salt-ope
   sudo: True
-munin_async01:
+munin-async01:
   host: 192.168.1.14
   user: salt-ope
   passwd: salt-ope

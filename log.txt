@@ -4961,3 +4961,47 @@ munin-asyncd:
 
 [...]
 ---
+2016-10-02 13:57:01,209 [salt.utils.templates][ERROR   ][2685] Rendering exception occurred: Jinja syntax error: Unexpected end of template. Jinja was looking for the following tags: 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.; line 174
+
+---
+[...]
+{% for munin_async in munin_async_client %}
+{% if host_addr in munin_async.ip %}
+munin-asyncd:
+  service.running:
+  - enable: True
+{% endif %}    <======================
+
+
+---
+2016-10-02 13:57:01,227 [salt.state       ][CRITICAL][2685] Rendering SLS 'base:munin' failed: Jinja syntax error: Unexpected end of template. Jinja was looking for the following tags: 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.; line 174
+
+---
+[...]
+{% for munin_async in munin_async_client %}
+{% if host_addr in munin_async.ip %}
+munin-asyncd:
+  service.running:
+  - enable: True
+{% endif %}    <======================
+
+
+---
+2016-10-02 14:21:18,181 [salt.state       ][CRITICAL][2848] Rendering SLS 'base:munin' failed: Conflicting ID '/var/lib/munin-async/.ssh'
+2016-10-02 19:28:56,463 [salt.state       ][CRITICAL][3353] Rendering SLS 'base:munin' failed: could not found expected ':'; line 114
+
+---
+[...]
+  file.directory:
+    - group: apache
+    - mode: 775
+
+/var/log/munin-graph.log
+  file.managed:    <======================
+    - group: apache
+    - mode: 664
+
+/var/www/html/munin:
+  file.directory:
+[...]
+---

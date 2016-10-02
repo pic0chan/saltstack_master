@@ -112,13 +112,6 @@ munin-pkgs:
   - mode: 755
   - makedirs: True
 
-/var/cache/munin/www:
-  file.directory:
-  - user: apache
-  - group: apache
-  - mode: 755
-  - makedirs: True
-
 {% else %}
 /etc/munin/munin-node.conf:
   file.managed:
@@ -166,10 +159,77 @@ munin-node:
     - file: /etc/munin/munin-htpasswd
 {% endif %}
 
-{% if host_addr in munin_async_client %}
+{% for munin_async in munin_async_client %}
+{% if host_addr in munin_async.ip %}
+
+/var/cache/munin/www:
+  file.directory:
+  - user: apache
+  - group: apache
+  - mode: 755
+  - makedirs: True
+
+/usr/share/munin/munin-graph:
+  file.managed:
+    - group: apache
+
+/var/log/munin:
+  file.directory:
+    - group: apache
+    - mode: 775
+
+/var/log/munin-graph.log:
+  file.managed:
+    - group: apache
+    - mode: 664
+
+/var/www/html/munin:
+  file.directory:
+    - group: apache
+    - mode: 775
+    - recurse:
+      - group
+      - mode
+
+munin-async:
+  group.present:
+    - gid: 4001
+    - system: True
+  user.present:
+    - fullname: munin-async
+    - shell: /bin/bash
+    - home: /var/lib/munin-async
+    - uid: 4001
+    - gid: 4001
+    - groups:
+      - munin
+      - munin-async
+
+/var/lib/munin-async/.ssh:
+  file.directory:
+    - user: munin-async
+    - group: munin-async
+    - mode: 700
+    - makedirs: True
+
+/var/lib/munin/spool:
+  file.directory:
+    - mode: 775
+
+/var/lib/munin-async/.ssh/authorized_keys:
+  file.managed:
+    - source: salt://files/munin-async/var/lib/munin-async/ssh/authorized_keys
+    - user: munin-async
+    - group: munin-async
+    - mode: 600
+    - template: jinja
+    - context:
+      auth_command: {{ pillar.munin_async_param.auth_command }}
+      auth_pubkey: {{ pillar.munin_async_param.auth_pubkey }}
+
 munin-asyncd:
   service.running:
   - enable: True
 {% endif %}
-
+{% endfor %}
 

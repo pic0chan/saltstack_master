@@ -1,4 +1,5 @@
 {% set host_addr = salt['network.interface_ip']('eth0') %}
+{% set hostname = salt['network.get_hostname']() %}
 {% set os_ver = salt['grains.get']('osfinger') %}
 {% set munin_server_list = pillar.munin_server_list %}
 {% set munin_async_client = pillar.munin_async_client %}
@@ -69,7 +70,9 @@ munin-pkgs:
   - template: jinja
   - context:
     munin_master: {{ pillar.munin_master }}
-    munin_async_client: {{ pillar.munin_async_client }} 
+    munin_server_namelist: {{ pillar.munin_server_namelist }} 
+    munin_node_list: {{ pillar.munin_node_list }} 
+    munin_async_client: {{ pillar.munin_async_client }}
   - mode: 0644
   - user: root
   - group: root
@@ -159,8 +162,13 @@ munin-node:
     - file: /etc/munin/munin-htpasswd
 {% endif %}
 
-{% for munin_async in munin_async_client %}
-{% if host_addr in munin_async.ip %}
+{% if munin_async_client[hostname] is defined %}
+
+/var/lib/munin/spool:
+  file.directory:
+  - user: root
+  - group: munin
+  - mode: 775
 
 /var/cache/munin/www:
   file.directory:
@@ -175,10 +183,16 @@ munin-node:
 
 /var/log/munin:
   file.directory:
+    - user: munin
     - group: apache
     - mode: 775
 
 /var/log/munin-graph.log:
+  file.managed:
+    - group: apache
+    - mode: 664
+
+/var/log/munin-update.log:
   file.managed:
     - group: apache
     - mode: 664
@@ -212,10 +226,6 @@ munin-async:
     - mode: 700
     - makedirs: True
 
-/var/lib/munin/spool:
-  file.directory:
-    - mode: 775
-
 /var/lib/munin-async/.ssh/authorized_keys:
   file.managed:
     - source: salt://files/munin-async/var/lib/munin-async/ssh/authorized_keys
@@ -230,6 +240,6 @@ munin-async:
 munin-asyncd:
   service.running:
   - enable: True
+
 {% endif %}
-{% endfor %}
 

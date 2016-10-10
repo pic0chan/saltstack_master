@@ -5005,3 +5005,128 @@ munin-asyncd:
   file.directory:
 [...]
 ---
+2016-10-05 01:35:18,752 [salt.state       ][CRITICAL][5944] Rendering SLS 'base:munin' failed: mapping values are not allowed here; line 153
+
+---
+[...]
+      - group
+      - mode
+
+/var/lib/munin-async:
+  file.directory
+    - user: munin    <======================
+    - group: munin
+    - mode: 700
+    - makedirs: True
+
+/var/lib/munin-async/.ssh:
+[...]
+---
+2016-10-05 02:33:31,428 [salt.state       ][CRITICAL][6174] Rendering SLS 'base:munin' failed: Conflicting ID '/var/lib/munin/spool'
+2016-10-10 12:53:03,864 [salt.utils.templates][ERROR   ][10673] Rendering exception occurred: Jinja error: argument of type 'StrictUndefined' is not iterable
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/site-packages/salt/utils/templates.py", line 366, in render_jinja_tmpl
+    output = template.render(**decoded_context)
+  File "/usr/lib/python2.6/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/usr/lib/python2.6/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "<template>", line 164, in top-level template code
+TypeError: argument of type 'StrictUndefined' is not iterable
+
+; line 164
+
+---
+[...]
+{% if host_addr in munin_server_list %}
+    - file: /etc/munin/munin-htpasswd
+{% endif %}
+
+{% for munin_async in munin_async_client %}
+{% if host_addr in munin_async.ip %}    <======================
+
+/var/lib/munin/spool:
+  file.directory:
+  - user: root
+  - group: munin
+[...]
+---
+2016-10-10 12:53:03,865 [salt.state       ][CRITICAL][10673] Rendering SLS 'base:munin' failed: Jinja error: argument of type 'StrictUndefined' is not iterable
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/site-packages/salt/utils/templates.py", line 366, in render_jinja_tmpl
+    output = template.render(**decoded_context)
+  File "/usr/lib/python2.6/site-packages/jinja2/environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/usr/lib/python2.6/site-packages/jinja2/environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "<template>", line 164, in top-level template code
+TypeError: argument of type 'StrictUndefined' is not iterable
+
+; line 164
+
+---
+[...]
+{% if host_addr in munin_server_list %}
+    - file: /etc/munin/munin-htpasswd
+{% endif %}
+
+{% for munin_async in munin_async_client %}
+{% if host_addr in munin_async.ip %}    <======================
+
+/var/lib/munin/spool:
+  file.directory:
+  - user: root
+  - group: munin
+[...]
+---
+2016-10-10 12:58:11,000 [salt.utils.templates][ERROR   ][10726] Rendering exception occurred: Jinja variable 'salt.utils.odict.OrderedDict object' has no attribute 'munin'
+2016-10-10 12:58:11,001 [salt.state       ][CRITICAL][10726] Rendering SLS 'base:munin' failed: Jinja variable 'salt.utils.odict.OrderedDict object' has no attribute 'munin'
+2016-10-10 15:30:33,430 [salt.utils.templates][ERROR   ][11283] Rendering exception occurred: Jinja variable 'salt.utils.odict.OrderedDict object' has no attribute 'munin'
+2016-10-10 15:30:33,431 [salt.state       ][CRITICAL][11283] Rendering SLS 'base:munin' failed: Jinja variable 'salt.utils.odict.OrderedDict object' has no attribute 'munin'
+2016-10-10 16:21:57,737 [salt.pillar      ][ERROR   ][12133] Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:21:57,738 [salt.template    ][ERROR   ][12133] Template was specified incorrectly: False
+2016-10-10 16:21:57,739 [salt.pillar      ][CRITICAL][12133] Pillar render error: Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:21:57,788 [salt.pillar      ][ERROR   ][12133] Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:21:57,789 [salt.template    ][ERROR   ][12133] Template was specified incorrectly: False
+2016-10-10 16:21:57,790 [salt.pillar      ][CRITICAL][12133] Pillar render error: Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:23:23,389 [salt.pillar      ][ERROR   ][12206] Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:23:23,389 [salt.template    ][ERROR   ][12206] Template was specified incorrectly: False
+2016-10-10 16:23:23,390 [salt.pillar      ][CRITICAL][12206] Pillar render error: Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:23:23,441 [salt.pillar      ][ERROR   ][12206] Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:23:23,441 [salt.template    ][ERROR   ][12206] Template was specified incorrectly: False
+2016-10-10 16:23:23,442 [salt.pillar      ][CRITICAL][12206] Pillar render error: Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:23:48,471 [salt.pillar      ][ERROR   ][12237] Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:23:48,472 [salt.template    ][ERROR   ][12237] Template was specified incorrectly: False
+2016-10-10 16:23:48,473 [salt.pillar      ][CRITICAL][12237] Pillar render error: Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:23:48,524 [salt.pillar      ][ERROR   ][12237] Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:23:48,524 [salt.template    ][ERROR   ][12237] Template was specified incorrectly: False
+2016-10-10 16:23:48,526 [salt.pillar      ][CRITICAL][12237] Pillar render error: Specified SLS 'test' in environment 'base' is not available on the salt master
+2016-10-10 16:25:07,782 [salt.pillar      ][ERROR   ][12318] Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:25:07,782 [salt.template    ][ERROR   ][12318] Template was specified incorrectly: False
+2016-10-10 16:25:07,783 [salt.pillar      ][CRITICAL][12318] Pillar render error: Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:25:07,822 [salt.pillar      ][ERROR   ][12318] Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:25:07,822 [salt.template    ][ERROR   ][12318] Template was specified incorrectly: False
+2016-10-10 16:25:07,823 [salt.pillar      ][CRITICAL][12318] Pillar render error: Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:26:43,830 [salt.pillar      ][ERROR   ][12542] Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:26:43,831 [salt.template    ][ERROR   ][12542] Template was specified incorrectly: False
+2016-10-10 16:26:43,832 [salt.pillar      ][CRITICAL][12542] Pillar render error: Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:26:43,879 [salt.pillar      ][ERROR   ][12542] Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:26:43,879 [salt.template    ][ERROR   ][12542] Template was specified incorrectly: False
+2016-10-10 16:26:43,881 [salt.pillar      ][CRITICAL][12542] Pillar render error: Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:27:11,649 [salt.pillar      ][ERROR   ][12573] Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:27:11,650 [salt.template    ][ERROR   ][12573] Template was specified incorrectly: False
+2016-10-10 16:27:11,651 [salt.pillar      ][CRITICAL][12573] Pillar render error: Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:27:11,701 [salt.pillar      ][ERROR   ][12573] Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:27:11,702 [salt.template    ][ERROR   ][12573] Template was specified incorrectly: False
+2016-10-10 16:27:11,703 [salt.pillar      ][CRITICAL][12573] Pillar render error: Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:28:13,281 [salt.pillar      ][ERROR   ][12604] Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:28:13,282 [salt.template    ][ERROR   ][12604] Template was specified incorrectly: False
+2016-10-10 16:28:13,283 [salt.pillar      ][CRITICAL][12604] Pillar render error: Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:28:13,333 [salt.pillar      ][ERROR   ][12604] Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:28:13,334 [salt.template    ][ERROR   ][12604] Template was specified incorrectly: False
+2016-10-10 16:28:13,335 [salt.pillar      ][CRITICAL][12604] Pillar render error: Specified SLS 'testtest' in environment 'base' is not available on the salt master
+2016-10-10 16:37:16,626 [salt.template    ][ERROR   ][12882] Template was specified incorrectly: False
+2016-10-10 17:06:28,453 [salt.utils.templates][ERROR   ][13692] Rendering exception occurred: Jinja variable 'salt.utils.context.NamespacedDictWrapper object' has no attribute 'munin_async_client'
+2016-10-10 17:06:28,454 [salt.state       ][CRITICAL][13692] Rendering SLS 'base:munin' failed: Jinja variable 'salt.utils.context.NamespacedDictWrapper object' has no attribute 'munin_async_client'
+2016-10-10 17:10:08,567 [salt.utils.templates][ERROR   ][13780] Rendering exception occurred: Jinja variable 'salt.utils.context.NamespacedDictWrapper object' has no attribute 'munin_async_client'
+2016-10-10 17:10:08,567 [salt.state       ][CRITICAL][13780] Rendering SLS 'base:munin' failed: Jinja variable 'salt.utils.context.NamespacedDictWrapper object' has no attribute 'munin_async_client'

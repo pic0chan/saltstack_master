@@ -1,0 +1,1 @@
+command="{{ auth_command }}" {{ auth_pubkey }}

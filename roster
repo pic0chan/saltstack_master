@@ -28,3 +28,28 @@ munin_cent71:
   user: salt-ope
   passwd: salt-ope
   sudo: True
+ceph-deploy:
+  host: 192.168.1.5
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
+ceph-node01:
+  host: 192.168.1.6
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
+ceph-node02:
+  host: 192.168.1.16
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
+ceph-node03:
+  host: 192.168.1.18
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
+ceph-admin:
+  host: 192.168.1.20
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True

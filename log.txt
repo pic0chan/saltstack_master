@@ -5130,3 +5130,6 @@ TypeError: argument of type 'StrictUndefined' is not iterable
 2016-10-10 17:06:28,454 [salt.state       ][CRITICAL][13692] Rendering SLS 'base:munin' failed: Jinja variable 'salt.utils.context.NamespacedDictWrapper object' has no attribute 'munin_async_client'
 2016-10-10 17:10:08,567 [salt.utils.templates][ERROR   ][13780] Rendering exception occurred: Jinja variable 'salt.utils.context.NamespacedDictWrapper object' has no attribute 'munin_async_client'
 2016-10-10 17:10:08,567 [salt.state       ][CRITICAL][13780] Rendering SLS 'base:munin' failed: Jinja variable 'salt.utils.context.NamespacedDictWrapper object' has no attribute 'munin_async_client'
+2016-10-16 00:08:06,485 [salt.template    ][ERROR   ][19430] Template was specified incorrectly: False
+2016-10-16 00:08:08,861 [salt.template    ][ERROR   ][19428] Template was specified incorrectly: False
+2016-10-16 00:08:08,908 [salt.template    ][ERROR   ][19429] Template was specified incorrectly: False

@@ -3,16 +3,22 @@ local:
   user: salt-ope
   passwd: salt-ope
   sudo: True
+  minion_opts:
+    test: True
 nagioslog:
   host: 192.168.1.12
   user: salt-ope
   passwd: salt-ope
   sudo: True
+  minion_opts:
+    test: True
 munin-async01:
   host: 192.168.1.14
   user: salt-ope
   passwd: salt-ope
   sudo: True
+  minion_opts:
+    test: True
 munin:
   host: 192.168.1.15
   user: salt-ope
@@ -25,33 +31,54 @@ kibana4:
   user: salt-ope
   passwd: salt-ope
   sudo: True
+  minion_opts:
+    test: True
 munin_cent71:
   host: 192.168.1.19
   user: salt-ope
   passwd: salt-ope
   sudo: True
+  minion_opts:
+    test: True
 ceph-deploy:
   host: 192.168.1.5
   user: salt-ope
   passwd: salt-ope
   sudo: True
+  minion_opts:
+    test: True
 ceph-node01:
   host: 192.168.1.6
   user: salt-ope
   passwd: salt-ope
   sudo: True
+  minion_opts:
+    test: True
 ceph-node02:
   host: 192.168.1.16
   user: salt-ope
   passwd: salt-ope
   sudo: True
+  minion_opts:
+    test: True
 ceph-node03:
   host: 192.168.1.18
   user: salt-ope
   passwd: salt-ope
   sudo: True
+  minion_opts:
+    test: True
 ceph-admin:
   host: 192.168.1.20
   user: salt-ope
   passwd: salt-ope
   sudo: True
+  minion_opts:
+    test: True
+repo:
+  host: 192.168.1.22
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
+  minion_opts:
+    test: True

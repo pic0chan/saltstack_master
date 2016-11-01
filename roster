@@ -82,3 +82,10 @@ repo:
   sudo: True
   minion_opts:
     test: True
+svn:
+  host: 192.168.1.24
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
+  minion_opts:
+    test: True

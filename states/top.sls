@@ -1,6 +1,6 @@
 base:
   '*':
-    - setup-shell
-    - rsyslog
-    - munin
+    - setup.shell
+    - syslog.rsyslog
+    - munin.munin
 

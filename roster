@@ -89,3 +89,10 @@ svn:
   sudo: True
   minion_opts:
     test: True
+svn-bk:
+  host: 192.168.1.26
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
+  minion_opts:
+    test: True

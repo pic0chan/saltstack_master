@@ -29,6 +29,7 @@ LogicalVolume2:
 parted_/dev/vdd:
   cmd.run:
     - name: parted -s -- /dev/vdd mklabel gpt mkpart primary xfs 1 -1 set 1 lvm on
+    - unless: ls /dev/ | grep vdd1
 
 /dev/vdd1:
   lvm.pv_present:

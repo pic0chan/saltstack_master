@@ -1,6 +1,8 @@
 base:
   '*':
     - setup.shell
-    - syslog.rsyslog
-    - munin.munin
+  svn:
+    - disk.lvm
+    - svn.svn
+    - svn.repo
 

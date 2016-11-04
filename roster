@@ -96,3 +96,10 @@ svn-bk:
   sudo: True
   minion_opts:
     test: True
+netbox:
+  host: 192.168.1.102
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
+  minion_opts:
+    test: True

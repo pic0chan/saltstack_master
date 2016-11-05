@@ -8,7 +8,7 @@ DATABASE = {
 }
 SECRET_KEY = '1SM+6t-F&vI7WEvQC0DL@e0aix-kVOySAnMo0u#CUmia1u#E2I'
 ADMINS = [
-    ['sakai-yasu', 'pico_yasu_99@yahoo.co.jp'],
+    ['sakai-yasu', 'pico_yasu_99_2@yahoo.co.jp'],
 ]
 EMAIL = {
     'SERVER': 'localhost',

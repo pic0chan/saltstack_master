@@ -45,8 +45,9 @@ config-nginx:
 #    - name: /etc/nginx/sites-available/netbox
 #    - target: /etc/nginx/sites-available/
 
-nginx:
+service_nginx:
   service.running:
+    - name: nginx
     - enable: True
     - require:
       - pkg: nginx-pkg
@@ -61,7 +62,7 @@ gunicorn-config:
     - group: root
     - mode: 755
 
-supervisor-config:
+supervisord-config:
   file.managed:
     - name: /etc/supervisord.d/netbox.conf
     - source: salt://files/netbox/etc/supervisord.d/netbox.conf
@@ -69,8 +70,9 @@ supervisor-config:
     - group: root
     - mode: 755
 
-supervisord:
+service-supervisord:
   service.running:
+    - name: supervisord
     - watch:
       - file: /etc/supervisord.d/netbox.conf
 

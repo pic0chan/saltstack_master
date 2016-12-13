@@ -86,6 +86,7 @@ function promps {
   local BLUE="\[\e[1;34m\]"
   local RED="\[\e[1;31m\]"
   local GREEN="\[\e[1;32m\]"
+  local rGREEN="\[\e[0;32m\]"
   local WHITE="\[\e[00m\]"
   local GRAY="\[\e[1;37m\]"
 
@@ -94,6 +95,6 @@ function promps {
   *) TITLEBAR="";;
   esac
   local BASE="\u@\h"
-  PS1="${TITLEBAR}${GREEN}${BASE}${WHITE}:${BLUE}\W${GREEN}\$(parse_git_branch)${BLUE}\$${WHITE} "
+  PS1="${TITLEBAR}${rGREEN}${BASE}${WHITE}:${BLUE}\W${rGREEN}\$(parse_git_branch)${BLUE}\$${WHITE} "
 }
 promps

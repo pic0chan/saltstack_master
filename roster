@@ -103,3 +103,18 @@ netbox:
   sudo: True
   minion_opts:
     test: True
+ceph-client:
+  host: 192.168.1.103
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
+  minion_opts:
+    test: True
+k2hftfuse01:
+  host: 192.168.1.21
+  user: salt-ope
+  passwd: salt-ope
+  sudo: True
+  minion_opts:
+    test: True
+

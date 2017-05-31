@@ -7,3 +7,7 @@ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-bu
 echo 'export RBENV_ROOT="${HOME}/.rbenv"' >> ${HOME}/.bash_profile
 echo 'export PATH="${RBENV_ROOT}/bin:${PATH}"' >> ${HOME}/.bash_profile
 echo 'eval "$(rbenv init -)"' >> ${HOME}/.bash_profile
+
+#--
+
+sudo yum install libvirt-devel ruby-devel

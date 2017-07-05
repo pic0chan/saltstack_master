@@ -1,0 +1,16 @@
+<source>
+  type tail
+  format /^(?<time>[^ ]*\s*[^ ]* [^ ]*) (?<host>[^ ]*) (?<ident>[a-zA-Z0-9_\/\.\-]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$/
+  time_format %b %d %H:%M:%S
+  path /var/log/messages
+  tag rsyslog
+</source>
+<match rsyslog>
+  type forward
+  <server>
+    name kibana5
+    host 192.168.1.37
+    port 24224
+  </server>
+</match>
+

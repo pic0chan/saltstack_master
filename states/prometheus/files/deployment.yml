@@ -1,0 +1,42 @@
+# Copyright (c) 2016 Kazumasa Kohtaka. All rights reserved.
+# This file is available under the MIT license.
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      name: prometheus
+      labels:
+        app: prometheus
+    spec:
+      serviceAccountName: prometheus
+      containers:
+      - name: prometheus
+        image: prom/prometheus:v1.8.2
+        args:
+        - -config.file=/mnt/etc/prometheus.yml
+        ports:
+        - containerPort: 9090
+        volumeMounts:
+        - name: config-volume
+          mountPath: /mnt/etc/
+        - name: data-volume
+          mountPath: /mnt/data/
+        - name: secrets-volume
+          mountPath: /var/run/secrets
+      volumes:
+      - name: config-volume
+        configMap:
+          name: prometheus-config
+      - name: data-volume
+        emptyDir: {}
+      - name: secrets-volume
+        hostPath:
+          path: /var/run/secrets

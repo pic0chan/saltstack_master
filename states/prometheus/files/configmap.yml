@@ -209,3 +209,9 @@ data:
       - source_labels: [__meta_kubernetes_pod_name]
         action: replace
         target_label: kubernetes_pod_name
+
+    - job_name: 'static-mon'
+
+      static_configs:
+        - targets:
+          - '192.168.1.100:9100'
